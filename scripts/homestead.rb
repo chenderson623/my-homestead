@@ -9,33 +9,6 @@ class Homestead
     # Prevent TTY Errors
     config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
 
-    # Configure The Box
-    config.vm.box = settings["box"] ||= "laravel/homestead"
-    config.vm.hostname = settings["hostname"] ||= "homestead"
-
-    # Configure A Private Network IP
-    config.vm.network :private_network, ip: settings["ip"] ||= "192.168.10.10"
-
-    # Configure A Few VirtualBox Settings
-    config.vm.provider "virtualbox" do |vb|
-      vb.name = settings["hostname"] ||= 'homestead'
-      vb.customize ["modifyvm", :id, "--memory", settings["memory"] ||= "2048"]
-      vb.customize ["modifyvm", :id, "--cpus", settings["cpus"] ||= "1"]
-      vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
-      vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-      vb.customize ["modifyvm", :id, "--ostype", "Ubuntu_64"]
-    end
-
-    # Configure A Few VMware Settings
-    ["vmware_fusion", "vmware_workstation"].each do |vmware|
-      config.vm.provider vmware do |v|
-        v.vmx["displayName"] = "homestead"
-        v.vmx["memsize"] = settings["memory"] ||= 2048
-        v.vmx["numvcpus"] = settings["cpus"] ||= 1
-        v.vmx["guestOS"] = "ubuntu-64"
-      end
-    end
-
     # Standardize Ports Naming Schema
     if (settings.has_key?("ports"))
       settings["ports"].each do |port|
