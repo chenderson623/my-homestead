@@ -2,7 +2,7 @@ require 'json'
 require 'yaml'
 
 VAGRANTFILE_API_VERSION = "2"
-confDir = $confDir ||= File.expand_path("~/.homestead")
+confDir = $confDir ||= File.expand_path("./")
 
 homesteadYamlPath = confDir + "/Homestead.yaml"
 afterScriptPath = confDir + "/after.sh"
