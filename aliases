@@ -18,8 +18,7 @@ function serve() {
 
 function backupdb() {
     local origPath=/var/lib/mysql
-
-    local backupPath=/vagrant/data/mysql
+    local backupPath=/vagrant/.data/database
 
     echo "Backing up mysql database ..."
     sudo tar -czf $backupPath/mysql.tar.gz -C $origPath .
@@ -28,8 +27,7 @@ function backupdb() {
 
 function restoredb() {
     local origPath=/var/lib/mysql
-
-    local backupPath=/vagrant/data/mysql
+    local backupPath=/vagrant/.data/database
 
     echo "Stopping service ..."
     sudo service mysql stop
