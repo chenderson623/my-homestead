@@ -8,7 +8,7 @@ homesteadYamlPath = confDir + "/Homestead.yaml"
 afterScriptPath = confDir + "/after.sh"
 aliasesPath = confDir + "/aliases"
 
-require File.expand_path(File.dirname(__FILE__) + '/scripts/homestead.rb')
+require File.expand_path(File.dirname(__FILE__) + '/.vagrant-provision/homestead.rb')
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     settings = YAML::load(File.read(homesteadYamlPath))
