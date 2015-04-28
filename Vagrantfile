@@ -5,7 +5,7 @@ VAGRANTFILE_API_VERSION = "2"
 confDir = $confDir ||= File.expand_path("./")
 
 homesteadYamlPath = confDir + "/Homestead.yaml"
-provisionScriptPath = confDir + "/after-provision.sh"
+provisionScriptPath = confDir + "/after-provision.sh" #Note: runs as non-privileged
 bootScriptPath = confDir + "/after-boot.sh"
 aliasesPath = confDir + "/aliases"
 
@@ -49,7 +49,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |vagrant_config|
     	Homestead.configure(config, settings)
 
     	if File.exists? provisionScriptPath then
-    		config.vm.provision "shell", path: provisionScriptPath
+    		config.vm.provision "shell", path: provisionScriptPath, privileged: false
     	end
 
         if File.exists? bootScriptPath then
