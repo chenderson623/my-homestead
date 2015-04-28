@@ -22,6 +22,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |vagrant_config|
         # Configure A Private Network IP
         config.vm.network :private_network, ip: settings["ip"] ||= "192.168.10.10"
 
+        # disable vagrant-cachier for this instance
+        if Vagrant.has_plugin?("vagrant-cachier")
+          # set auto_update to false, if you do NOT want to check the correct
+          # additions version when booting this machine
+          config.vbguest.auto_update = false
+
+          # do NOT download the iso file from a webserver
+          config.vbguest.no_remote = true
+        end
+
         # Configure A Few VirtualBox Settings
         config.vm.provider "virtualbox" do |vb|
           vb.name = settings["hostname"] ||= 'homestead'
