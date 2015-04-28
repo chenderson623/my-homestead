@@ -36,5 +36,5 @@ function restoredb() {
     echo "Restoring backup ..."
     sudo tar -xzf $backupPath/mysql.tar.gz -C $origPath
     echo "Starting service ..."
-    sudo service $1 start
+    sudo service mysql start
 }

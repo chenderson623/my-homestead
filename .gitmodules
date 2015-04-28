@@ -1,0 +1,6 @@
+[submodule "solutionscenter"]
+	path = solutionscenter
+	url = git@bitbucket.org:mediasolutions/solutionscenter.git
+[submodule "wavewebsites"]
+	path = wavewebsites
+	url = git@bitbucket.org:mediasolutions/wavewebsites.git
